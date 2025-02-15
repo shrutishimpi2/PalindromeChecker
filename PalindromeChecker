@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class PalindromeChecker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            // Get user input
+            System.out.print("Enter a string to check (or type 'exit' to quit): ");
+            String input = scanner.nextLine();
+
+            // Exit condition
+            if (input.equalsIgnoreCase("exit")) {
+                System.out.println("Exiting the program. Goodbye!");
+                break;
+            }
+
+            // Process the input (remove spaces & convert to lowercase)
+            String processedInput = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+            // Check if it's a palindrome
+            if (isPalindrome(processedInput)) {
+                System.out.println("✅ '" + input + "' is a palindrome!");
+            } else {
+                System.out.println("❌ '" + input + "' is NOT a palindrome.");
+            }
+            System.out.println("-----------------------------------");
+        }
+
+        scanner.close();
+    }
+
+    // Function to check if a string is a palindrome
+    private static boolean isPalindrome(String str) {
+        int left = 0, right = str.length() - 1;
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
